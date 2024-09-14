@@ -203,7 +203,9 @@ TAXES AND TOTAL INPUT
 
 <div class="input-group">
 
-<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+<!-- <span class="input-group-addon">₵<i class="ion ion-social-usd"></i></span> -->
+
+<span class="input-group-addon">₵</span>
 
 <input type="text" class="form-control input-lg" name="newTotalSale" id="newTotalSale"
 placeholder="000000" total="" readonly required>
@@ -357,7 +359,7 @@ PRODUCTS TABLE
 <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
 <input type="text" class="form-control input-lg" name="newClient" placeholder="Enter Name" required>
-lass="ion ion-social-usd"></i></div>
+<i class="ion ion-social"></i></div>
 </div>
 
 </div>

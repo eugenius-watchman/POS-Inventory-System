@@ -56,7 +56,15 @@ $valueClient = $sale['id_client'];
 
 $client = ControlClients::ctrShowClients($itemClient, $valueClient);
 
-$percentageTax = round(($sale['total'] * 100 / $sale['net'])- 100);
+// $percentageTax = round(($sale['total'] * 100 / $sale['net'])- 100);
+// $percentageTax = round(($sale['total'] * 100 / $sale['net']));
+if ($sale['net'] != 0) {
+    $percentageTax = round(($sale['total'] * 100 / $sale['net']) - 100);
+} else {
+    // Handle the case where $sale['net'] is zero, e.g. set $percentageTax to 0 or some default value
+    $percentageTax = 0;  // or whatever is appropriate in your case
+}
+
 
 ?>
 
@@ -257,7 +265,7 @@ value="<?php echo $sale['net']; ?>" required>
 
 <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
 
-<input type="text" class="form-control input-lg" name="newTotalSale" id="newTotalSale"
+<input type="text" class="form-control input-lg" name="newTotalSale" id="newTotalSale" placeholder="00000"
 total="<?php echo $sale['net']; ?>" value="<?php echo $sale['total']; ?>" readonly required>
 
 <input type="hidden" id="totalSale" name="totalSale" value="<?php echo $sale['total']; ?>"  required>
