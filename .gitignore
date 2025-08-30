@@ -1,0 +1,4 @@
+.vscode/
+vendor/
+extensions/vendor/
+ajax/debug.log
