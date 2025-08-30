@@ -2,3 +2,4 @@
 vendor/
 extensions/vendor/
 ajax/debug.log
+*.log
