@@ -1,5 +1,8 @@
 .vscode/
 vendor/
 extensions/vendor/
-ajax/debug.log
 *.log
+.env
+config/database.php
+views/img/users/
+views/img/products/
