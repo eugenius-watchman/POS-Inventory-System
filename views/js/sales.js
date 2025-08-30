@@ -141,8 +141,8 @@ $(".tableSales tbody").on("click", "button.addProduct", function(){
                 '<div class="col-xs-3 enterPrice" style="padding-left:0px">'+
 
                 '<div class="input-group">'+
-
-                    '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+                    // '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'
+                    '<span class="input-group-addon">&#8373;</span>'+
 
                     '<input type="text" class="form-control newProductPrice" realPrice="'+price+'" name="newProductPrice" value="'+price+'" readonly required>'+
                     
@@ -316,7 +316,8 @@ $(".btnAddProduct").click(function(){
     
                     '<div class="input-group">'+
     
-                        '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+                        // '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'
+                        '<span class="input-group-addon">₵</span>'+
     
                         '<input type="text" class="form-control newProductPrice" realPrice="" name="newProductPrice"  readonly required>'+
                         
@@ -540,7 +541,8 @@ $("#newPaymentMode").change(function(){
 
 			 	'<div class="input-group">'+ 
 
-			 		'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+ 
+			 		// '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'
+                    '<span class="input-group-addon">&#8373;</span>'+ 
 
 			 		'<input type="text" class="form-control" id="newCashValue" placeholder="000000" required>'+
 
@@ -552,7 +554,8 @@ $("#newPaymentMode").change(function(){
 
 			 	'<div class="input-group">'+
 
-			 		'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+			 		// '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'
+                    '<span class="input-group-addon">₵</i></span>'+
 
 			 		'<input type="text" class="form-control" id="newCashChange"  placeholder="000000" readonly required>'+
 

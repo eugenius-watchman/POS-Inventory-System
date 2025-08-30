@@ -57,10 +57,10 @@ foreach ($clients as $key => $value) {
                                     <td>' . ($key + 1) . '</td>
                                     <td>' . $value['name'] . '</td>
                                     <td>' . $value['document'] . '</td>
-                                    <td>' . $value['email'] . '</td>
-                                    <td>' . $value['telephone'] . '</td>
-                                    <td>' . $value['address'] . '</td>
-                                    <td>' . $value['birthday'] . '</td>
+                                    <td>' . (!empty($value['email']) ? $value['email'] : 'Not provided') . '</td>
+                                    <td>' . (!empty($value['telephone']) ? $value['telephone'] : 'Not provided') . '</td>
+                                    <td>' . (!empty($value['address']) ? $value['address'] : 'Not provided') . '</td>
+                                    <td>' . (!empty($value['birthday']) ? $value['birthday'] : 'Not provided') . '</td>
                                     <td>' . $value['purchases'] . '</td>
                                     <td>' . $value['last_purchase'] . '</td>
                                     <td>' . $value['date'] . '</td>
@@ -133,7 +133,7 @@ foreach ($clients as $key => $value) {
 <div class="form-group">
 <div class="input-group">
 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-<input type="email" class="form-control input-lg" name="newEmail" placeholder="Enter Email" required>
+<input type="email" class="form-control input-lg" name="newEmail" placeholder="Enter Email">
 </div>
 </div>
 
@@ -141,7 +141,7 @@ foreach ($clients as $key => $value) {
 <div class="form-group">
 <div class="input-group">
 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-<input type="text" class="form-control input-lg" name="newTelephone" placeholder="Enter Telephone" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
+<input type="text" class="form-control input-lg" name="newTelephone" placeholder="Enter Telephone" data-inputmask="'mask':'(999) 999-9999'" data-mask >
 </div>
 </div>
 
@@ -149,7 +149,7 @@ foreach ($clients as $key => $value) {
 <div class="form-group">
 <div class="input-group">
 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-<input type="text" class="form-control input-lg" name="newAddress" placeholder="Enter Address" required>
+<input type="text" class="form-control input-lg" name="newAddress" placeholder="Enter Address" >
 </div>
 </div>
 
@@ -157,7 +157,7 @@ foreach ($clients as $key => $value) {
 <div class="form-group">
 <div class="input-group">
 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-<input type="text" class="form-control input-lg" name="newBirthday" placeholder="Enter Birthday" data-inputmask="'alias':'yyyy/mm/dd'" data-mask required>
+<input type="text" class="form-control input-lg" name="newBirthday" placeholder="Enter Birthday" data-inputmask="'alias':'yyyy/mm/dd'" data-mask >
 </div>
 </div>
 
@@ -231,7 +231,7 @@ $createClient->ctrCreateClient();
 <div class="form-group">
 <div class="input-group">
 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-<input type="email" class="form-control input-lg" name="editEmail" id="editEmail" required>
+<input type="email" class="form-control input-lg" name="editEmail" id="editEmail" >
 </div>
 </div>
 
@@ -239,7 +239,7 @@ $createClient->ctrCreateClient();
 <div class="form-group">
 <div class="input-group">
 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-<input type="text" class="form-control input-lg" name="editTelephone" id="editTelephone" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
+<input type="text" class="form-control input-lg" name="editTelephone" id="editTelephone" data-inputmask="'mask':'(999) 999-9999'" data-mask >
 </div>
 </div>
 
@@ -247,19 +247,19 @@ $createClient->ctrCreateClient();
 <div class="form-group">
 <div class="input-group">
 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-<input type="text" class="form-control input-lg" name="editAddress" id="editAddress" required>
+<input type="text" class="form-control input-lg" name="editAddress" id="editAddress" >
 </div>
 </div>
 
 <!-- ENTRY FOR BIRTHDAY -->
-<div class="form-group
+<div class="form-group">
 
 <div class="input-group">
 
 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
 <input type="text" class="form-control input-lg" name="editBirthday" id="editBirthday"
-data-inputmask="'alias':'yyyy/mm/dd'" data-mask required>
+data-inputmask="'alias':'yyyy/mm/dd'" data-mask>
 
 </div>
 

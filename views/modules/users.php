@@ -1,15 +1,13 @@
 <?php
 
-if ($_SESSION['profile'] === 'Special' || $_SESSION['profile'] === 'Seller') {
-    echo '<script>
-
-    window.location = "home";
-
-  </script>';
-
-    return;
+// if ($_SESSION['profile'] === 'Special' || $_SESSION['profile'] === 'Seller') {
+//     echo '<script>window.location = "home";</script>';
+//     return;
+// }
+  if ($_SESSION['profile'] === 'Special' || $_SESSION['profile'] === 'Seller') {
+    header("Location: home");
+    exit;
 }
-
 ?>
 
 <div class="content-wrapper">
@@ -94,12 +92,20 @@ foreach ($users as $key => $value) {
 
     echo '<td>' . $value['profile'] . '</td>';
 
-    if ($value['status'] !== 0) {
-        echo '<td><button class="btn btn-success btn-xs btnActivate" idUser="'
-        . $value['id'] . '" userStatus="0">Activated</button></td>';
-    } else {
-        echo '<td><button class="btn btn-danger btn-xs btnActivate" idUser="'
-        . $value['id'] . '" userStatus="1">Deactivated</button></td>';
+    // if ($value['status'] !== 0) {
+    //     echo '<td><button class="btn btn-success btn-xs btnActivate" idUser="'
+    //     . $value['id'] . '" userStatus="0">Activated</button></td>';
+    // } else {
+    //     echo '<td><button class="btn btn-danger btn-xs btnActivate" idUser="'
+    //     . $value['id'] . '" userStatus="1">Deactivated</button></td>';
+    // }
+
+    if ($value['status'] == 1) {  // Explicitly check for "1"
+        echo '<td><button class="btn btn-success btn-xs btnActivate" idUser="' 
+        . $value['id'] . '" userStatus="1">Activated</button></td>';
+    } else {  // Covers 0, null, or other cases
+        echo '<td><button class="btn btn-danger btn-xs btnActivate" idUser="' 
+        . $value['id'] . '" userStatus="0">Deactivated</button></td>';
     }
 
     echo '<td>' . $value['last_login'] . '</td>
@@ -156,9 +162,9 @@ foreach ($users as $key => $value) {
 =  MODAL HEADER
 ======================================-->
 
-<div class="modal-header" style="background: #3c8dbc;color: white;">
+<div class="modal-header" style="background: #3c8dbc; color: #fff;">
 
-<button type="button" class="close" data-dismiss="modal">&times;<td>
+<button type="button" class="close" data-dismiss="modal">&times;</button>
 
 <div class="btn-group">
 
@@ -232,7 +238,7 @@ placeholder="Enter password" required>
 
 </div>
 
-<!-- ENTRY FOR FROFILE SELECTION -->
+<!-- ENTRY FOR PROFILE SELECTION -->
 
 <div class="form-group">
 
@@ -384,7 +390,7 @@ placeholder="Enter a new password">
 
 </div>
 
-<!-- ENTRY FOR FROFILE SELECTION -->
+<!-- ENTRY FOR PROFILE SELECTION -->
 
 <div class="form-group">
 
@@ -424,7 +430,6 @@ class="img-thumbnail preview" width="100px" >
 <input type="hidden"  name="currentPicture" id="currentPicture">
 
 </div>
-
 </div>
 
 </div>

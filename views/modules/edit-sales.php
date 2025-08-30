@@ -188,7 +188,7 @@ if (is_array($listProduct)) {
 
                     <div class="input-group">
 
-                        <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+                        <span class="input-group-addon">₵</i></span>
 
                         <input type="text" class="form-control newProductPrice"
                         realPrice="' . $reply['sale_price'] . '"
@@ -263,7 +263,7 @@ value="<?php echo $sale['net']; ?>" required>
 
 <div class="input-group">
 
-<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+<span class="input-group-addon"><!--<i class="ion ion-social-usd">-->₵</i></span>
 
 <input type="text" class="form-control input-lg" name="newTotalSale" id="newTotalSale" placeholder="00000"
 total="<?php echo $sale['net']; ?>" value="<?php echo $sale['total']; ?>" readonly required>

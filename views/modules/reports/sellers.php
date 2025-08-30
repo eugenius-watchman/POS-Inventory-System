@@ -75,7 +75,7 @@ barColors: ['#0af'],
 xkey: 'y',
 ykeys: ['a'],
 labels: ['sales'],
-preUnits: '$',
+preUnits: 'GHS',
 hideHover: 'auto'
 });
 </script>

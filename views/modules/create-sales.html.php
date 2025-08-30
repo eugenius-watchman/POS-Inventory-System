@@ -118,7 +118,7 @@ data-toggle="modal" data-target="#modalAddClient" data-dismiss="modal"> Add Clie
 
 <div class="input-group">
 
-<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+<span class="input-group-addon"><!--<i class="ion ion-social-usd">-->₵</i></span>
 
 <input type="number" class="form-control" name="newProductPrice" id="newProductPrice" min="1" placeholder="000000" readonly required>
 
@@ -171,7 +171,7 @@ data-toggle="modal" data-target="#modalAddClient" data-dismiss="modal"> Add Clie
 
 <div class="input-group">
 
-<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+<span class="input-group-addon"><!--<i class="ion ion-social-usd">-->₵</i></span>
 
 <input type="number" class="form-control" name="newTotalSale" id="newTotalSale" min="1"
 placeholder="000000" readonly required>

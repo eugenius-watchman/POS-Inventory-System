@@ -111,6 +111,9 @@ class TCPDF_FILTERS {
 				break;
 			}
 			case 'JPXDecode': {
+		$eod = strpos($data, '>');
+		if ($eod !== false) {
+			// remove EOD and extra data (if any)
 				return self::decodeFilterJPXDecode($data);
 				break;
 			}
@@ -179,7 +182,7 @@ class TCPDF_FILTERS {
 		return $decoded;
 	}
 
-	/**
+	/* *
 	 * ASCII85Decode
 	 * Decodes data encoded in an ASCII base-85 representation, reproducing the original binary data.
 	 * @param $data (string) Data to decode.
@@ -227,7 +230,7 @@ class TCPDF_FILTERS {
 					self::Error('decodeFilterASCII85Decode: invalid code');
 				}
 			} else {
-				// the value represented by a group of 5 characters should never be greater than 2^32 - 1
+				// the value represented by a group of 5 characters should ne ver be greater than 2^32 - 1
 				$tuple += (($char - 33) * $pow85[$group_pos]);
 				if ($group_pos == 4) {
 					$decoded .= chr($tuple >> 24).chr($tuple >> 16).chr($tuple >> 8).chr($tuple);

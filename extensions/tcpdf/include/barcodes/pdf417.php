@@ -628,7 +628,7 @@ class PDF417 {
 				--$rows;
 				$size -= $rows;
 			} else {
-				// add pading
+				// add padding
 				$codewords = array_merge($codewords, array_fill(0, $pad, 900));
 			}
 		}
@@ -891,7 +891,7 @@ class PDF417 {
 								if (((($i + 1) == $codelen) OR ((($i + 1) < $codelen) AND (array_search(ord($code{($i + 1)}), $this->textsubmodes[$submode]) !== false))) AND (($s == 3) OR (($s == 0) AND ($submode == 1)))) {
 									// shift (temporary change only for this char)
 									if ($s == 3) {
-										// shift to puntuaction
+										// shift to punctuation
 										$txtarr[] = 29;
 									} else {
 										// shift from lower to alpha

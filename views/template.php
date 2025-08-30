@@ -67,6 +67,13 @@ PLUGINS JAVASCRIPT
 <!-- jQuery 3 -->
 <script src="views/bower_components/jquery/dist/jquery.min.js"></script>
 
+<!-- SweetAlert 2 -->
+<script src="views/plugins/sweetalert2/sweetalert2.all.js"></script>
+
+<!-- SweetAlert 2 CDN (replace your local version) -->
+<!--<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>-->
+<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">>-->
+
 <!-- Bootstrap 3.3.7 -->
 <script src="views/bower_components/bootstrap/dist/js/
 bootstrap.min.js"></script>
@@ -88,11 +95,11 @@ dataTables.responsive.min.js"></script>
 responsive.bootstrap.min.js"></script>
 
 <!-- SweetAlert 2 -->
-<script src="views/plugins/sweetalert2/sweetalert2.all.js"></script>
+<!--<script src="views/plugins/sweetalert2/sweetalert2.all.js"></script> -->
 
 <!-- By default sweetalert2 doesn't support IE.
 To enable IE 11 support, include Promise polyfill -->
-<script type="text/javascript"
+<script type="text/javascript" 
 src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 
 <!-- iCheck 1.0.1 -->
@@ -163,10 +170,12 @@ if (isset($_SESSION['loginSession']) && $_SESSION['loginSession'] === 'ok') {
             $_GET['route'] === 'logout') {
             include 'modules/' . $_GET['route'] . '.php';
         } else {
-            include 'modules/404.php';
+              include 'modules/home.php';
+
         }
-    } else {
-        include 'modules/home.php';
+    } 
+          else {
+              include 'modules/404.php';
     }
 
     /*=============================================

@@ -212,4 +212,30 @@ class ModelSales
         $stmt = null; // Properly close the statement
         return $result;
     }
+
+     /*=============================================
+    FETCHING SALES ID
+    =============================================*/
+    public static function mdlGetLastSaleDetails() {
+    $stmt = Connection::connect()->prepare(
+        "SELECT id, total FROM sales ORDER BY id DESC LIMIT 1"
+    );
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+    public static function mdlGetSaleItems($saleId) {
+        $stmt = Connection::connect()->prepare(
+            "SELECT description as name, quantity as qty, price 
+            FROM sale_items WHERE sale_id = :sale_id"
+        );
+        $stmt->bindParam(":sale_id", $saleId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // public static function mdlGetLastSaleId() {
+    // $stmt = Connection::connect()->prepare("SELECT id FROM sales ORDER BY id DESC LIMIT 1");
+    // $stmt->execute();
+    // return $stmt->fetchColumn();
 }

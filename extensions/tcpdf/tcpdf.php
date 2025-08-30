@@ -16445,7 +16445,7 @@ class TCPDF {
 					// *** closing html tag
 					$dom[$key]['opening'] = false;
 					$dom[$key]['parent'] = end($level);
-					array_pop($level);
+					array_pop($level); 
 					$dom[$key]['hide'] = $dom[($dom[($dom[$key]['parent'])]['parent'])]['hide'];
 					$dom[$key]['fontname'] = $dom[($dom[($dom[$key]['parent'])]['parent'])]['fontname'];
 					$dom[$key]['fontstyle'] = $dom[($dom[($dom[$key]['parent'])]['parent'])]['fontstyle'];
@@ -16530,7 +16530,7 @@ class TCPDF {
 						$dom[$key]['fgcolor'] = $dom[$parentkey]['fgcolor'];
 						$dom[$key]['strokecolor'] = $dom[$parentkey]['strokecolor'];
 						$dom[$key]['align'] = $dom[$parentkey]['align'];
-						$dom[$key]['listtype'] = $dom[$parentkey]['listtype'];
+						$dom[$key]['listtype'] = $dom[$parentkey]['listtype']; 
 						$dom[$key]['text-indent'] = $dom[$parentkey]['text-indent'];
 						$dom[$key]['text-transform'] = $dom[$parentkey]['text-transform'];
 						$dom[$key]['border'] = array();
@@ -16549,7 +16549,7 @@ class TCPDF {
 					}
 					// split style attributes
 					if (isset($dom[$key]['attribute']['style']) AND !empty($dom[$key]['attribute']['style'])) {
-						// get style attributes
+						// get style attributes 
 						preg_match_all('/([^;:\s]*):([^;]*)/', $dom[$key]['attribute']['style'], $style_array, PREG_PATTERN_ORDER);
 						$dom[$key]['style'] = array(); // reset style attribute array
 						while (list($id, $name) = each($style_array[1])) {

@@ -1,4 +1,13 @@
 <?php
+
+use Mike42\Escpos\PrintConnectors\CupsPrintConnector;
+
+use Mike42\Escpos\Printer;
+use Mike42\Escpos\EscposImage;
+use Mike42\Escpos\PrintConnectors\FilePrintConnector;
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+
+
 class ControlSales{
     /*=========================================
     SHOW SALES
@@ -84,25 +93,203 @@ class ControlSales{
 
             //echo "success";
             if ($reply === 'ok') {
-                echo '<script>
+                // 1. Get the sale ID and details (enhanced version)
+                $saleData = ModelSales::mdlGetLastSaleDetails();
+                $saleId = $saleData['id'];
+                $totalSale = $saleData['total'];
+                $items = ModelSales::mdlGetSaleItems($saleId);
 
-                  localStorage.removeItem("range");
+                try {
+                    // 1. Initialize 
+                    // $printer = "epson20";
+                    // $connector = new FilePrintConnector("/dev/usb/lp0"); // for thermal printers
+                    // Laser Printer
+                    $connector = new CupsPrintConnector("HP-LaserJet-P1005");
+                    $printer = new Printer($connector);
 
-                  swal({
-                        type: "success",
-                        title: "The sale has been added successfully!",
-                        showConfirmButton: true,
-                        confirmButtonText: "Close"
+                    //  Get seller information (ADD THIS SECTION)
+                    $tableSeller = "users";
+                    $item = "id";
+                    $sellerId = $_POST["idSeller"];
+                    $getSeller = ModelUsers::MdlShowUsers($tableSeller, $item, $sellerId);
+    
+
+                    // 2. Print Receipt (your original format)
+                    $printer->setJustification(Printer::JUSTIFY_CENTER);
+                    $printer->text(date("Y-m-d H:i:s")."\n");
+                    $printer->feed(1);
+                    $printer->text("BSS Inventory System"."\n");
+                    $printer->text("ID: 71.759.963-9"."\n");
+                    $printer->text("Address: Adenta Accra"."\n");
+                    $printer->text("Phone: 0244534243"."\n");
+                    $printer->text("Invoice N.".$_POST["newSale"]."\n");
+                    $printer->feed(1);
+                    $printer->text("Customer: ".$getClient["name"]."\n");
+                    $printer->text("Seller: ".$getSeller["name"]."\n");
+                    $printer->feed(1);
+                    
+                    foreach ($productsList as $product) {
+                        $printer->setJustification(Printer::JUSTIFY_LEFT);
+                        $printer->text($product["description"]."\n");
+                        $printer->setJustification(Printer::JUSTIFY_RIGHT);
+                        $printer->text("₵".number_format($product["price"],2)." × ".$product["quantity"]." = ₵".number_format($product["totalPrice"],2)."\n");
+                    }
+                    
+                    $printer->feed(1);            
+                    $printer->text("NET: ₵".number_format($_POST["newNetPrice"],2)."\n");
+                    $printer->text("TAX: ₵".number_format($_POST["newTaxPrice"],2)."\n");
+                    $printer->text("--------\n");
+                    $printer->text("TOTAL: ₵".number_format($_POST["saleTotal"],2)."\n");
+                    $printer->feed(1);
+                    $printer->text("Thanks for your purchase");
+                    $printer->feed(3);
+                    $printer->cut(Printer::CUT_PARTIAL);
+                    $printer->close();
+
+                    // 3. Success Notification (classic swal)
+                    echo '<script>
+                        localStorage.removeItem("range");
+                        swal({
+                            type: "success",
+                            title: "Sale #'.$_POST["newSale"].' Completed",
+                            text: "Total: ₵'.number_format($_POST["totalSale"], 2).'",
+                            showConfirmButton: true,
+                            confirmButtonText: "Close",
+                            allowOutsideClick: false
                         }).then((result) => {
-                              if (result.value) {
-
-                              window.location = "sales";
-
+                            if (result.value) {
+                                window.location = "sales";
                             }
-                        })
+                        });
+                    </script>';
 
-              </script>';
+                } catch (Exception $e) {
+                    // 4. Error Notification (classic swal)
+                    error_log("Print Error: ".$e->getMessage());
+                    echo '<script>
+                        swal({
+                            type: "warning",
+                            title: "Sale Completed",
+                            text: "Receipt #'.$_POST["newSale"].' saved but not printed",
+                            showConfirmButton: true,
+                            confirmButtonText: "Continue",
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location = "sales";
+                            }
+                        });
+                    </script>';
+                }
             }
+            // if ($reply === 'ok') {
+            //     // Get the inserted sale ID directly from your model
+            //     $saleId = ModelSales::mdlGetLastSaleId(); // You'll need to implement this
+                
+            //     try {
+            //         // 1. Initialize Printer
+            //         $connector = new CupsPrintConnector("HP-LaserJet-P1005");
+            //         $print = new Printer($connector);
+                    
+            //         // 2. Print Receipt Header with actual sale ID
+            //         $print->setJustification(Printer::JUSTIFY_CENTER);
+            //         $print->text("=== RECEIPT #$saleId ===\n");
+            //         $print->text(str_repeat("-", 32) . "\n");
+                    
+            //         // 3. Print receipt content...
+            //         $print->text("Date: " . date("Y-m-d H:i:s") . "\n");
+                    
+            //         // 4. Finalize
+            //         $print->cut(Printer::CUT_PARTIAL);
+            //         $print->close();
+
+            //         echo '<script>
+            //             swal({
+            //                 title: "Sale #'.$saleId.' Completed!",
+            //                 text: "Receipt printed successfully",
+            //                 icon: "success"
+            //             }).then(() => window.location = "sales");
+            //         </script>';
+            //     } catch (Exception $e) {
+            //         echo '<script>
+            //             swal({
+            //                 title: "Sale #'.$saleId.' Completed",
+            //                 text: "Error printing receipt: '.addslashes($e->getMessage()).'",
+            //                 icon: "warning"
+            //             }).then(() => window.location = "sales");
+            //         </script>';
+            //     }
+            // }
+
+            // if ($reply === 'ok') {
+            //     try {
+            //         // Option 1: CUPS Printing (Recommended for HP LaserJet)
+            //         $connector = new CupsPrintConnector("HP-LaserJet-P1005");
+                    
+            //         // Option 2: File Printing (Alternative)
+            //         // $connector = new FilePrintConnector("/dev/usb/lp0");
+                    
+
+            //         $print = new Printer($connector);
+                    
+            //         // Proper newlines use double quotes
+            //         $print->text("Hello World\n"); 
+            //         $print->text("Date: " . date("Y-m-d H:i:s") . "\n");
+            //         $print->text(str_repeat("-", 32) . "\n");
+                    
+            //         // For laser printers, use partialCut instead of cut
+            //         $print->cut(Printer::CUT_PARTIAL); 
+            //         $print->close();
+
+            //         echo '<script>
+            //             localStorage.removeItem("range");
+            //             swal({
+            //                 type: "success",
+            //                 title: "Sale completed!",
+            //                 text: "Document sent to printer",
+            //                 showConfirmButton: true,
+            //                 confirmButtonText: "Close"
+            //             }).then((result) => {
+            //                 if (result.value) {
+            //                     window.location = "sales";
+            //                 }
+            //             });
+            //         </script>';
+
+            //     } catch (Exception $e) {
+            //         echo '<script>
+            //             swal({
+            //                 type: "error",
+            //                 title: "Print Error",
+            //                 text: "'.addslashes($e->getMessage()).'",
+            //                 showConfirmButton: true,
+            //                 confirmButtonText: "Continue"
+            //             });
+            //         </script>';
+            //     }
+            // }
+
+            // if ($reply === 'ok') {
+
+            //     echo '<script>
+
+            //       localStorage.removeItem("range");
+
+            //       swal({
+            //             type: "success",
+            //             title: "The sale has been added successfully!",
+            //             showConfirmButton: true,
+            //             confirmButtonText: "Close"
+            //             }).then((result) => {
+            //                   if (result.value) {
+
+            //                   window.location = "sales";
+
+            //                 }
+            //             })
+
+            //   </script>';
+            // }
         }
     }
 
@@ -255,7 +442,7 @@ class ControlSales{
 
                           }
                         })
-
+29.01
               </script>';
             }
         }
@@ -462,9 +649,9 @@ class ControlSales{
                 }
 
                 echo ("</td>
-    <td style='border:1px solid #eee;'>$ " . number_format($item['tax'], 2) . "</td>
-    <td style='border:1px solid #eee;'>$ " . number_format($item['net'], 2) . "</td>
-    <td style='border:1px solid #eee;'>$ " . number_format($item['total'], 2) . "</td>
+    <td style='border:1px solid #eee;'>₵  " . number_format($item['tax'], 2) . "</td>
+    <td style='border:1px solid #eee;'>₵  " . number_format($item['net'], 2) . "</td>
+    <td style='border:1px solid #eee;'>₵  " . number_format($item['total'], 2) . "</td>
     <td style='border:1px solid #eee;'> " . $item['mode_payment'] . "</td>
     <td style='border:1px solid #eee;'> " . substr($item['date'], 0, 10) . '</td>
     </tr>');

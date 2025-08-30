@@ -88,6 +88,7 @@ $(document).on("click",".btnEditUser",function(){
           }
 
         }
+         
 
 
     });
@@ -99,6 +100,7 @@ $(document).on("click",".btnEditUser",function(){
 ================================= */
 $(document).on("click",".btnActivate",function(){
 
+         
   var idUser = $(this).attr("idUser");
   var userStatus = $(this).attr("userStatus");
 
@@ -221,6 +223,7 @@ $(document).on("click",".btnDeleteUser",function(){
      }).then(function(reply){
 
         if(reply.value){
+         
 
             window.location = "index.php?route=users&userId="+userId+"&user="+user+"&userPicture="+userPicture; 
           
@@ -228,5 +231,6 @@ $(document).on("click",".btnDeleteUser",function(){
         
 
       })
+         
 
 });

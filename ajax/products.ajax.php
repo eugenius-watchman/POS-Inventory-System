@@ -90,7 +90,7 @@ if (isset($_POST['getProducts'])) {
 }
 
 /*======================================
-GET PRODUCT
+GET PRODUCT NAME
 =======================================*/
 if (isset($_POST["productName"])){
 

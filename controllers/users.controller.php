@@ -40,7 +40,7 @@ class ControlUsers{
                         $item1 = 'last_login';
                         $value1 = $currentDate;
 
-                        $item2 = 'i';
+                        $item2 = 'id';
                         $value2 = $reply['id'];
 
                         $lastLogin = ModelUsers::mdlUpdateUser($table, $item1, $value1, $item2, $value2);

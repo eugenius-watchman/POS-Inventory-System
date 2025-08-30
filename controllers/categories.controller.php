@@ -62,14 +62,36 @@ class ControlCategories{
     /*===============================
     SHOW CATEGORIES
     ============================== */
-    static public function ctrShowCategories($item, $value)
-    {
-        $table = "categories";
+    // static public function ctrShowCategories($item, $value)
+    // {
+    //     $table = "categories";
+        
+    //     $reply = ModelCategories::mdlShowCategories($table, $item, $value);
 
+    //     return $reply;
+    // }
+    static public function ctrShowCategories($item, $value) {
+    $table = "categories";
+    
+    try {
+        // Debug: Log the query parameters
+        error_log("Querying categories where {$item} = {$value}");
+        
         $reply = ModelCategories::mdlShowCategories($table, $item, $value);
-
+        
+        // Debug: Log the result
+        error_log("Query result: " . print_r($reply, true));
+        
+        if (empty($reply)) {
+            error_log("No results found for {$item} = {$value}");
+        }
+        
         return $reply;
+    } catch (Exception $e) {
+        error_log("Error in ctrShowCategories: " . $e->getMessage());
+        return [];
     }
+}
 
     /*===============================
     EDIT  CATEGORIES
@@ -151,7 +173,7 @@ class ControlCategories{
 						swal({
 
 							type: "success",
-							title: "Category deleted succesfully!",
+							title: "Category deleted successfully!",
 							showConfirmButton: true,
 							confirmButtonText: "Close",
 							closeOnConfirm: false

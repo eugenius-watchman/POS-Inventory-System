@@ -167,7 +167,7 @@ Add Client
 
 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
 
-<input type="email" class="form-control input-lg" name="newEmail" placeholder="Enter Email" required>
+<input type="email" class="form-control input-lg" name="newEmail" placeholder="Enter Email" >
 
 </div>
 
@@ -182,7 +182,7 @@ Add Client
 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
 
 <input type="text" class="form-control input-lg" name="newTelephone" placeholder="Enter Telephone"
-data-inputmask="'mask':'(999) 999-9999'" data-mask required>
+data-inputmask="'mask':'(999) 999-9999'" data-mask >
 
 </div>
 
@@ -196,7 +196,7 @@ data-inputmask="'mask':'(999) 999-9999'" data-mask required>
 
 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
 
-<input type="text" class="form-control input-lg" name="newAddress" placeholder="Enter Address" required>
+<input type="text" class="form-control input-lg" name="newAddress" placeholder="Enter Address" >
 
 </div>
 
@@ -211,7 +211,7 @@ data-inputmask="'mask':'(999) 999-9999'" data-mask required>
 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
 <input type="text" class="form-control input-lg" name="newBirthday" placeholder="Enter Birthday"
-data-inputmask="'alias':'yyyy/mm/dd'" data-mask required>
+data-inputmask="'alias':'yyyy/mm/dd'" data-mask>
 
 </div>
 

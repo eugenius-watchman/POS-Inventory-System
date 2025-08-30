@@ -59,7 +59,7 @@ Add User
 <tr>
 
 <td>1</td>
-<td>User Adminnistrator</td>
+<td>User Administrator</td>
 <td>admin</td>
 <td><img src="views/img/users/default/anonymous.png" width="40px"></td>
 <td>Administrator</td>
@@ -81,7 +81,7 @@ Add User
 <tr>
 
 <td>2</td>
-<td>User Adminnistrator</td>
+<td>User Administrator</td>
 <td>admin</td>
 <td><img src="views/img/users/default/anonymous.png" width="40px"></td>
 <td>Administrator</td>
@@ -103,7 +103,7 @@ Add User
 <tr>
 
 <td>3</td>
-<td>User Adminnistrator</td>
+<td>User Administrator</td>
 <td>admin</td>
 <td><img src="views/img/users/default/anonymous.png" width="40px"></td>
 <td>Administrator</td>
@@ -211,7 +211,7 @@ placeholder="Enter password" required>
 
 </div>
 
-<!-- ENTRY FOR FROFILE SELECTION -->
+<!-- ENTRY FOR PROFILE SELECTION -->
 
 <div class="form-group">
 
@@ -274,3 +274,4 @@ data-dismiss="modal">Close</button>
 </div>
 
 </div>
+======================================-->

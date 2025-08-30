@@ -11,63 +11,59 @@ class ControlClients
     /**
      *
      */
-    static public function ctrCreateClient()
-    {
-        if (isset($_POST['newClient'])) {
-            if (preg_match('/^[.\a-zA-Z0-9- ]+$/', $_POST['newClient']) &&
-                preg_match('/^[0-9]+$/', $_POST['newDocumentId']) &&
-                preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["newEmail"]) &&
-                preg_match('/^[()\-0-9 ]+$/', $_POST['newTelephone']) &&
-                preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST['newAddress'])){
-                $table = 'clients';
+    static public function ctrCreateClient() {
+    if (isset($_POST['newClient'])) {
+        if (preg_match('/^[.\a-zA-Z0-9- ]+$/', $_POST['newClient']) &&
+            preg_match('/^[0-9]+$/', $_POST['newDocumentId']) &&
+            (empty($_POST['newEmail']) || preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST['newEmail'])) &&
+            (empty($_POST['newTelephone']) || preg_match('/^[()\-0-9 ]+$/', $_POST['newTelephone'])) &&
+            (empty($_POST['newAddress']) || preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST['newAddress']))) {
 
-                $data = array('name' => $_POST['newClient'], 'document' => $_POST['newDocumentId'], 'email' => $_POST['newEmail'], 'telephone' => $_POST['newTelephone'], 'address' => $_POST['newAddress'], 'birthday' => $_POST['newBirthday'],);
+            $table = 'clients';
+            $data = array(
+                'name' => $_POST['newClient'],
+                'document' => $_POST['newDocumentId'],
+                'email' => $_POST['newEmail'] ?? null,
+                'telephone' => $_POST['newTelephone'] ?? null,
+                'address' => $_POST['newAddress'] ?? null,
+                'birthday' => $_POST['newBirthday'] ?? null
+            );
 
-                $reply = ModelClients::mdlAddClient($table, $data);
+            $reply = ModelClients::mdlAddClient($table, $data);
 
-                //echo "success";
-                if ($reply === 'ok') {
-                    echo'<script>
-
-							swal({
-
-								type: "success",
-								title: "Client added successfully!",
-								showConfirmButton: true,
-								confirmButtonText: "Close",
-								closeOnConfirm: false
-								}).then((result)=>{
-									if(result.value){
-
-										window.location = "clients";
-
-									}
-
-								});
-
-                        </script>';
-                }
+            if ($reply === 'ok') {
+                echo '<script>
+                    swal({
+                        type: "success",
+                        title: "Client added successfully!",
+                        showConfirmButton: true,
+                        confirmButtonText: "Close",
+                        closeOnConfirm: false
+                    }).then((result) => {
+                        if(result.value) {
+                            window.location = "clients";
+                        }
+                    });
+                </script>';
+            }
             } else {
-                echo'<script>
-
-                            swal({
-                                type: "error",
-                                title: "The client cannot be empty or have special characters!",
-                                showConfirmButton: true,
-                                confirmButtonText: "Close",
-                                closeOnConfirm: false
-                                }).then((result)=>{
-                                    if(result.value) {
-
-                                    window.location = "clients";
-
-                                    }
-                                })
-
-                    </script>';
+                echo '<script>
+                    swal({
+                        type: "error",
+                        title: "The client cannot be empty or have special characters!",
+                        showConfirmButton: true,
+                        confirmButtonText: "Close",
+                        closeOnConfirm: false
+                    }).then((result) => {
+                        if(result.value) {
+                            window.location = "clients";
+                        }
+                    });
+                </script>';
             }
         }
     }
+
 
     /*=========================================
     SHOW CLIENTS
@@ -94,64 +90,73 @@ class ControlClients
     /**
      *
      */
-    static public function ctrEditClient()
-    {
-        if (isset($_POST['editClient'])) {
-            if (preg_match('/^[.\a-zA-Z0-9- ]+$/', $_POST['editClient']) &&
-                preg_match('/^[0-9]+$/', $_POST['editDocumentId']) &&
-                preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+
-                    ([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["editEmail"]) &&
-                preg_match('/^[()\-0-9 ]+$/', $_POST['editTelephone']) &&
-                preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST['editAddress'])){
-                $table = 'clients';
+    static public function ctrEditClient() {
+    if (isset($_POST['editClient'])) {
+        if (preg_match('/^[.\a-zA-Z0-9- ]+$/', $_POST['editClient']) &&
+            preg_match('/^[0-9]+$/', $_POST['editDocumentId']) &&
+            (empty($_POST['editEmail']) || preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST['editEmail'])) &&
+            (empty($_POST['editTelephone']) || preg_match('/^[()\-0-9 ]+$/', $_POST['editTelephone'])) &&
+            (empty($_POST['editAddress']) || preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST['editAddress']))) {
 
-                $data = array('id' => $_POST['idClient'], 'name' => $_POST['editClient'], 'document' => $_POST['editDocumentId'], 'email' => $_POST['editEmail'], 'telephone' => $_POST['editTelephone'], 'address' => $_POST['editAddress'], 'birthday' => $_POST['editBirthday'],);
+            $table = 'clients';
+            // $data = array(
+            //     'id' => $_POST['idClient'],
+            //     'name' => $_POST['editClient'],
+            //     'document' => $_POST['editDocumentId'],
+            //     'email' => $_POST['editEmail'],
+            //     'telephone' => $_POST['editTelephone'],
+            //     'address' => $_POST['editAddress'],
+            //     'birthday' => $_POST['editBirthday']
+            // );
 
-                $reply = ModelClients::mdlEditClient($table, $data);
+            $data = array(
+                'id' => $_POST['idClient'],
+                'name' => $_POST['editClient'],
+                'document' => $_POST['editDocumentId'],
+                'email' => $_POST['editEmail'] ?? null,
+                'telephone' => $_POST['editTelephone'] ?? null,
+                'address' => $_POST['editAddress'] ?? null,
+                'birthday' => $_POST['editBirthday'] ?? null
+            );
 
-                if ($reply === 'ok') {
-                    echo'<script>
+            // ModelClients::mdlEditClient('clients', $data);
 
-							swal({
 
-								type: "success",
-								title: "Client edited successfully!",
-								showConfirmButton: true,
-								confirmButtonText: "Close",😻
-								closeOnConfirm: false
-								}).then((result)=>{
-									if(result.value){
+            $reply = ModelClients::mdlEditClient($table, $data);
 
-										window.location = "clients";
-
-									}
-
-								});
-
-                    </script>';
-                }
-            } else {
-                echo'<script>
-
-                            swal({
-                                type: "error",
-                                title: "The client cannot be empty or have
-                                special characters!",
-                                showConfirmButton: true,
-                                confirmButtonText: "Close",
-                                closeOnConfirm: false
-                                }).then((result)=>{
-                                    if(result.value) {
-
-                                    window.location = "clients";
-
-                                    }
-                                })
-
-                    </script>';
+            if ($reply === 'ok') {
+                echo '<script>
+                    swal({
+                        type: "success",
+                        title: "Client edited successfully!",
+                        showConfirmButton: true,
+                        confirmButtonText: "Close",
+                        closeOnConfirm: false
+                    }).then((result) => {
+                        if(result.value) {
+                            window.location = "clients";
+                        }
+                    });
+                </script>';
+            }
+                } else {
+                echo '<script>
+                    swal({
+                        type: "error",
+                        title: "The client cannot be empty or have special characters!",
+                        showConfirmButton: true,
+                        confirmButtonText: "Close",
+                        closeOnConfirm: false
+                    }).then((result) => {
+                        if(result.value) {
+                            window.location = "clients";
+                        }
+                    });
+                </script>';
             }
         }
     }
+
 
     /*=========================================
     DELETE CLIENT
@@ -166,7 +171,7 @@ class ControlClients
             $data = $_GET['idClient'];
 
             $reply = ModelClients::mdlDeleteClient($table, $data);
-
+            
             if ($reply === 'ok') {
                 echo'<script>
                         swal({

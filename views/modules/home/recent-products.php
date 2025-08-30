@@ -53,7 +53,7 @@ for ($i = 0; $i < 10; $i++) {
 
             ' . $products[$i]['description'] . '
 
-            <span class="label label-warning pull-right">$' . $products[$i]['sale_price'] . '</span>
+            <span class="label label-warning pull-right">GHS' . $products[$i]['sale_price'] . '</span>
 
           </a>
 

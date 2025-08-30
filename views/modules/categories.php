@@ -70,35 +70,62 @@ $item = null;
 $value = null;
 
 $categories = ControlCategories::ctrShowCategories($item, $value);
-
 foreach ($categories as $key => $value) {
     echo '<tr>
+            <td>' . ($key + 1) . '</td>
+            <td class="text-uppercase">' . $value['category'] . '</td>
+            <td>
+                <div class="btn-group" role="group">';
 
-                <td>' . ($key + 1) . '</td>
-
-                  <td class="text-uppercase">' . $value['category'] . '</td>
-
-                <td>
-
-                <div class="btn-group">
-
-                <button class="btn btn-warning btn-warning btnEditCategory"
-                  idCategory="' . $value['id'] . '" data-toggle="modal"
-                  data-target="#modalEditCategory"><i class="fa fa-pencil"></i>
+    // Edit Button
+    echo '<button class="btn btn-warning btnEditCategory mr-1" 
+                  idCategory="' . $value['id'] . '" 
+                  data-toggle="modal"
+                  data-target="#modalEditCategory">
+                  <i class="fa fa-pencil"></i>
                 </button>';
 
+    // Delete Button (for admins only)
     if ($_SESSION['profile'] === 'Administrator') {
         echo '<button class="btn btn-danger btnDeleteCategory"
-                idCategory="' . $value['id'] . '"><i class="fa fa-times"></i>
-              </button>';
+                      idCategory="' . $value['id'] . '"
+                      type="button">
+                      <i class="fa fa-times"></i>
+                </button>';
     }
 
     echo '</div>
-
-       </td>
-
-    </tr>';
+          </td>
+          </tr>';
 }
+// foreach ($categories as $key => $value) {
+//     echo '<tr>
+
+//                 <td>' . ($key + 1) . '</td>
+
+//                   <td class="text-uppercase">' . $value['category'] . '</td>
+
+//                 <td>
+
+//                 <div class="btn-group">
+
+//                 <button class="btn btn-warning btn-warning btnEditCategory"
+//                   idCategory="' . $value['id'] . '" data-toggle="modal"
+//                   data-target="#modalEditCategory"><i class="fa fa-pencil"></i>
+//                 </button>';
+
+//     if ($_SESSION['profile'] === 'Administrator') {
+//         echo '<button class="btn btn-danger btnDeleteCategory"
+//                 idCategory="' . $value['id'] . '"><i class="fa fa-times"></i>
+//               </button>';
+//     }
+
+//     echo '</div>
+
+//        </td>
+
+//     </tr>';
+// }
 
 ?>
 

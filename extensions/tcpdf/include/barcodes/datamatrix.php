@@ -376,7 +376,7 @@ class Datamatrix {
 	 * @param $nb (int) Number of blocks.
 	 * @param $nd (int) Number of data codewords per block.
 	 * @param $nc (int) Number of correction codewords per block.
-	 * @param $gf (int) numner of fields on log/antilog table (power of 2).
+	 * @param $gf (int) number of fields on log/antilog table (power of 2).
 	 * @param $pp (int) The value of its prime modulus polynomial (301 for ECC200).
 	 * @return array data codewords + error codewords
 	 * @protected

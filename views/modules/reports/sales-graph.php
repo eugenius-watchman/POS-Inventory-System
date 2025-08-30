@@ -3,7 +3,7 @@
 error_reporting(0);
 
 if (isset($_GET['initialDate'])) {
-    $initial_date = $_GET['initialDate'];
+    $initialDate = $_GET['initialDate'];
     $finalDate = $_GET['finalDate'];
 } else {
     $initialDate = null;
@@ -82,7 +82,7 @@ if ($dontRepeatDates !== null) {
 ],
 xkey             : 'y',
 ykeys            : ['sales'],
-labels           : ['sales'],
+labels           : ['sales(GHS)'],
 lineColors       : ['#efefef'],
 lineWidth        : 2,
 hideHover        : 'auto',
@@ -92,7 +92,7 @@ pointSize        : 4,
 pointStrokeColors: ['#efefef'],
 gridLineColor    : '#efefef',
 gridTextFamily   : 'Open Sans',
-preUnits         : '$',
+preUnits         : '₵',
 gridTextSize     : 10
 });
 

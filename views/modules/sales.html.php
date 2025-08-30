@@ -68,7 +68,7 @@ width="100%">
 
 <td>2322424</td>
 <td>Eugenius Darrah</td>
-<td>Cindy Kaay</td>
+<td>Sandy Kaay</td>
 <td>Cheque-4242222</td>
 <td>$ 1,000.00</td>
 <td>$ 1,190.00</td>

@@ -10,7 +10,7 @@ $arrayCustomers = array();
 $arrayCustomersList = array();
 
 foreach ($sales as $key => $valueSales) {
-    foreach ($customers as $key => $value_customers) {
+    foreach ($customers as $key => $valueCustomers) {
         if ($valueCustomers['id'] === $valueSales['id_client']) {
             #Capture Customers in an array
             array_push($arrayCustomers, $valueCustomers['name']);
@@ -75,7 +75,7 @@ barColors: ['#f6a'],
 xkey: 'y',
 ykeys: ['a'],
 labels: ['sales'],
-preUnits: '$',
+preUnits: '₵',
 hideHover: 'auto'
 });
 </script>
