@@ -68,13 +68,5 @@ Eugene Darrah-Gblorkpor – GitHub
 📝 License
 MIT
 
----
-
-## ✅ Summary
-
-| Where | What to add |
-|-------|-------------|
-| **Description** | `POS and Inventory Management System built with PHP MVC — inventory, sales, user roles, PDF invoicing, and real-time reporting.` |
-| **Topics** | `pos, inventory-management, php, mvc, point-of-sale, sales-management, pdf-invoice, user-management, reporting, analytics, bootstrap, jquery, mysql, chartjs, tcpdf, web-application, business-management` |
 
 ---
