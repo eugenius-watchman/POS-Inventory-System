@@ -1,102 +1,80 @@
 # POS Inventory System
 
-A comprehensive Point of Sale (POS) and Inventory Management System built with PHP using the Model-View-Controller (MVC) architectural pattern.
+A comprehensive Point of Sale (POS) and Inventory Management System built with **PHP** using the **MVC** architectural pattern.
 
-## 🏗️ MVC Architecture
+---
 
-This application follows the MVC design pattern for separation of concerns and maintainability:
+## ✨ Features
 
-### 📁 Project Structure
+- 🛒 **Inventory Management**: Full CRUD operations for products and categories.
+- 💰 **Sales Processing**: Manage sales transactions in real-time.
+- 👤 **User Management**: Role-based access control for administrators and staff.
+- 🧾 **PDF Invoicing**: Generate invoices using TCPDF.
+- 📊 **Reporting & Analytics**: Real-time charts with Chart.js.
+- 📱 **Responsive Web Interface**: Built with Bootstrap.
+
+---
+
+## 🛠️ Tech Stack
+
+| Component | Technology |
+|-----------|------------|
+| Backend | PHP 7.4+ (MVC) |
+| Database | MySQL |
+| Frontend | HTML5, CSS3, JavaScript, jQuery, Bootstrap |
+| PDF Generation | TCPDF |
+| Charts | Chart.js |
+| Async | AJAX |
+
+---
+
+## 📁 Project Structure
 pos/
-├── controllers/ # Controller layer - Business logic
-│ ├── categories.controller.php
-│ ├── clients.controller.php
-│ ├── products.controller.php
-│ ├── sales.controller.php
-│ └── users.controller.php
-├── models/ # Model layer - Data handling
-│ ├── categories.model.php
-│ ├── clients.model.php
-│ ├── products.model.php
-│ ├── sales.model.php
-│ └── users.model.php
-├── views/ # View layer - Presentation
-│ ├── modules/ # Various application modules
-│ ├── js/ # JavaScript files
-│ └── img/ # Images and assets
-├── ajax/ # AJAX handlers for async operations
-└── extensions/ # Third-party libraries (TCPDF, etc.)
+├── controllers/ # Business logic
+├── models/ # Data handling
+├── views/ # Presentation layer
+├── ajax/ # Async handlers
+└── extensions/ # Third-party libraries (TCPDF)
 
-text
+---
 
-### 🔄 MVC Flow
-1. **Model**: Handles data operations and database interactions
-2. **View**: Presents data to users and collects user input  
-3. **Controller**: Processes requests, interacts with models, and returns views
+## 🚀 Installation
 
-## 🚀 Features
-- Inventory Management with CRUD operations
-- Sales Processing and Transaction Management
-- User Management with Role-based Access
-- Client/Customer Management
-- Real-time Reporting and Analytics
-- PDF Invoice Generation (TCPDF)
-- Responsive Web Interface
-
-## 🛠️ Technologies Used
-- **Backend**: PHP 7.4+ with MVC Architecture
-- **Frontend**: HTML5, CSS3, JavaScript, jQuery, Bootstrap
-- **Database**: MySQL
-- **PDF Generation**: TCPDF Library
-- **Charts**: Chart.js for analytics and reporting
-
-## 📦 Installation
-1. Clone the repository:
 ```bash
+# Clone the repository
 git clone https://github.com/eugenius-watchman/POS-Inventory-System.git
-Set up your web server (Apache/Nginx) to serve the project directory
+```
 
-Import the database schema from database/ directory
+# Set up your web server (Apache/Nginx) to serve the project directory
 
-Configure database connection in config/ files
+# Import the database schema from the database/ directory
 
-Set proper permissions for uploads directory:
+# Configure database connection in config/ files
 
-bash
+# Set proper permissions for uploads
 chmod -R 755 views/img/
-🔧 Configuration
-Update database credentials in the configuration files:
+📌 Future Improvements
+Cloud-based deployment
 
-Database host, name, username, and password
+Barcode scanning integration
 
-Application settings and constants
+Multi-store support
 
-📊 Database Schema
-The system uses normalized database tables including:
+Customer loyalty features
 
-users - System users and administrators
-
-products - Product inventory and details
-
-sales - Sales transactions and records
-
-clients - Customer information
-
-categories - Product categorization
-
-🤝 Contributing
-Fork the repository
-
-Create a feature branch: git checkout -b feature-name
-
-Commit changes: git commit -m 'Add feature'
-
-Push to branch: git push origin feature-name
-
-Submit a pull request
+👤 Author
+Eugene Darrah-Gblorkpor – GitHub
 
 📝 License
-This project is proprietary software. All rights reserved.
+MIT
 
-🆘 Support
-For support and documentation, please refer to the code comments or create an issue in the repository.
+---
+
+## ✅ Summary
+
+| Where | What to add |
+|-------|-------------|
+| **Description** | `POS and Inventory Management System built with PHP MVC — inventory, sales, user roles, PDF invoicing, and real-time reporting.` |
+| **Topics** | `pos, inventory-management, php, mvc, point-of-sale, sales-management, pdf-invoice, user-management, reporting, analytics, bootstrap, jquery, mysql, chartjs, tcpdf, web-application, business-management` |
+
+---
